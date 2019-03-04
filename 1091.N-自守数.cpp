@@ -8,25 +8,29 @@ int main(){
 		cin >> k;
 		int t1 = k;
 		int cnt = 0;
+		//判断输入数的位数
 		while(t1){
 			t1 /= 10;
 			cnt++;
 		}
 //		cout << "cnt:" << cnt <<endl;
 		for(int n = 1;n < 10;n++){
-			res = n * (k * k);
-			int res_t = res,cnt2 = 0,t2 = 0;
-			while(cnt){
+			res = n * (k * k);//题目中要求的式子
+			int res_t = res,cnt_t = cnt,cnt2 = 0,t2 = 0;
+			//判断末尾几个数
+			while(cnt_t){
 				t2 += res_t % 10 * pow(10,cnt2);
 				res_t /= 10;
-				cnt--; 
+				cnt_t--; 
 				cnt2++;
 			}
-			cout << "t:" << t2 << endl;
+//			cout << "t:" << t2 << endl;
+			//如果末尾几个数和输入的k相等，就为自守数
 			if(t2 == k){
 //				cout << "t:" << t2 << endl;
 				printf("%d %d\n",n,res);	
 				find = 1;
+				break;
 			}
 		}
 		if(!find)
